@@ -1,7 +1,17 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :check_login, only: %i[edit update destroy]
+  
+  def check_login
+    if !@user || session[:user_id] != @user.id
+      redirect_to '/main', notice: "Please login"  
+    end
+  end
   
   def main
+  end
+  
+  def login_form
     session[:user_id]=nil
   end
   
@@ -21,11 +31,6 @@ class UsersController < ApplicationController
       #format.json {render json: @user.errors, status: :unprocessable_entity}
     end
     #end
-  end
-  def logged
-    if !@user || !session[:user_id] == @user.id
-      redirect_to :log, notice: "Please login"  
-    end
   end
   
   def create_fast
@@ -47,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
+  def edits
   end
 
   # POST /users or /users.json

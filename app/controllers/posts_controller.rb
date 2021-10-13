@@ -1,6 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :check_login, only: %i[create edit update destroy]
+  
+  def check_login
+    if session[:user_id]==nil
+      redirect_to '/main', notice: "not registered cannot edit #{session[:user_id]}: Please login"
+      return  
+    end
+    #@user = User.find(session[:user_id])
+    if session[:user_id] != @post.user_id
+      redirect_to '/main', notice: "you are #{session[:user_id]} cannot edit #{@post.user_id}: Please login"
+    end
+  end
+  
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -24,7 +36,6 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    
     @post = Post.new(post_params)
     @post.user_id = session[:user_id]
     respond_to do |format|

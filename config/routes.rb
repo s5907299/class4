@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   get 'create_fast', to:"users#create_fast"
   
+  get 'login_form', to:"users#login_form"
   post 'login', to:"users#login"
   get 'show_post', to:"users#show_post"
   

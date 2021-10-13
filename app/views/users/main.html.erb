@@ -1,12 +1,7 @@
+<h1>Welcome</h1>
 <p id="notice"><%= notice %></p>
-<%= form_tag '/login'%>
 
-<div>
-  Email: <%= text_field_tag :email%>
-</div>
+<%= link_to 'Login', '\login_form' %> |
+<%= link_to 'Back to post', posts_path %> |
+<%= link_to 'Back to user', users_path %>
 
-<div>
-  Password: <%= password_field_tag :pass%>
-</div>
-
-<%= submit_tag "login" %>
