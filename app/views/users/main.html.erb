@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<%= form_tag '/login'%>
+
+<div>
+  Email: <%= text_field_tag :email%>
+</div>
+
+<div>
+  Password: <%= password_field_tag :pass%>
+</div>
+
+<%= submit_tag "login" %>

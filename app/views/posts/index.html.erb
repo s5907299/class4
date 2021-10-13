@@ -1,31 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Birthday:</strong>
-  <%= @user.birthday %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-
-<p>
-  <strong>Postal_code:</strong>
-  <%= @user.postal_code %>
-</p>
-
-<h1>Post</h1>
+<h1>Posts</h1>
 
 <table>
   <thead>
@@ -37,9 +12,7 @@
   </thead>
 
   <tbody>
-    <% @posts = Post.all %>
     <% @posts.each do |post| %>
-      <%if @user.id == post.user_id %>
       <tr>
         <td><%= post.msg %></td>
         <td><%= post.user_id %></td>
@@ -47,11 +20,11 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-      <% end %>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= link_to 'New post', new_post_path %>
+<br>
+
+<%= link_to 'User', "/users" %>
+<%= link_to 'New Post', new_post_path %>
